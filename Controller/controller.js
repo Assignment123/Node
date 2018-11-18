@@ -1,12 +1,13 @@
-
- const  modelfile = require("./../Model/model")
+const  modelfile = require("./../Model/model")
  
  exports.create_info = function (req, res) {
  
      let response = new modelfile(
          {
              name: req.body.name,
-             class: req.body.class
+             class: req.body.class,
+             date: req.body.date
+
          }
      );
  
@@ -18,7 +19,7 @@
  }; 
  
  
- exports.retrieve_info = function (req, res) {
+ exports.findAll = function (req, res) {
  
     modelfile.find(function (err, reply) {
          if (err) {
@@ -29,7 +30,7 @@
  };
  
  
- exports.retrieve_single = function (req, res) {
+ exports.findOne = function (req, res) {
  
     modelfile.findById(req.params.id, function (err, response) {
         if (err) {

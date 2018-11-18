@@ -1,7 +1,6 @@
 var express = require("express");
 var router = express.Router();
-var responses= require("./../Controller/controller");
-
+var responses= require("./../Async/async");
 
 router.post('/create', responses.create_info);
 router.get('/get', responses.findAll);

@@ -5,9 +5,12 @@ mongoose.connect('mongodb://sudrishya:sudrishya123@ds053128.mlab.com:53128/datab
 const Schema = mongoose.Schema;
 
 const Schema1 = new Schema({
-    name: String,
-    class : Number,
+    name: {type: String, required: true, max: 30},
+    class: {type: Number, required: true},
+    date: {type: Date,default: Date.now()},
+    deleted:{type: Boolean, default:false }
 });
 
 const Information = mongoose.model('Information', Schema1);
 module.exports = Information;
+
