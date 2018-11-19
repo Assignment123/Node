@@ -122,6 +122,7 @@ exports.patch = (req, res) => {
 
         note.save();
         res.json({ message: "Updated done" });
+        
 
     }).catch(err => {
         return res.status(500).json({

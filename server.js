@@ -21,8 +21,8 @@ db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
 app.use(parser.json());
 app.use('/', route);
-app.use('/', promiseroute);
-app.use('/', asyncroute);
+app.use('/promise/', promiseroute);
+app.use('/async/', asyncroute);
 
 app.listen(8000);
 
