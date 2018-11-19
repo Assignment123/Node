@@ -1,13 +1,13 @@
 var express = require("express");
 var router = express.Router();
-var responses= require("./../Promise/promise");
+var postcontroller= require("./../Promise/promise");
 
 
-router.post('/create', responses.create_info);
-router.get('/get', responses.findAll);
-router.get('/get/:id', responses.findOne);
-router.put('/:id/update', responses.update_info);
-router.delete('/:id/delete', responses.delete_info);
-router.patch('/patch/:id', responses.patch)
+router.post('/create', postcontroller.create_info);
+router.get('/get', postcontroller.findAll);
+router.get('/get/:id', postcontroller.findOne);
+router.put('/:id/update', postcontroller.update_info);
+router.delete('/:id/delete', postcontroller.delete_info);
+router.patch('/patch/:id', postcontroller.patch)
 
 module.exports = router;
