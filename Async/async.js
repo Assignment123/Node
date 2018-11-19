@@ -16,6 +16,7 @@ exports.create_info = async (req, res) => {
         try {
         const info = await note.save();
         const reply = await res.json({message: "successfully Added"});
+       
     }
     catch(err) {
         res.status(500).json({
@@ -23,7 +24,6 @@ exports.create_info = async (req, res) => {
         });
     }
 };
-
 exports.findAll = async(req, res) => {
 
     try{
@@ -35,6 +35,7 @@ exports.findAll = async(req, res) => {
     catch(err) {
         res.status(500).json({
             message: "Error Occured."
+        
         });
     }
 };
@@ -70,6 +71,7 @@ exports.update_info = async (req, res) => {
     if(!req.body.age) {
         return res.status(400).json({
             message: "class should be defined"
+    
         });
     }
 
@@ -95,7 +97,8 @@ exports.update_info = async (req, res) => {
             });                
         }
         return res.status(500).json({
-            message: "Error occured " +req.params.id
+            message: "Error occured " +req.params.id,
+            errMsg : err.toString()
         });
     }
 };
@@ -117,6 +120,7 @@ exports.delete_info = async (req, res) => {
         if(err.kind === 'ObjectId' || err.name === 'NotFound') {
             return res.status(404).json({
                 message: "info error " + req.params.id
+                
             });                
         }
         return res.status(500).json({
