@@ -26,16 +26,31 @@ exports.create_info = (req, res) => {
 };
 
 exports.findAll = (req, res) => {
-    Note.find({deleted: {$ne: true}}).sort({date: 'desc'})
-    .then(note => {
-        res.json(note);
-    }).catch(err => {
-        res.status(500).json({
-            message: "Error Occured."
-        });
-    });
-};
+   var pageNum = parseInt(req.query.pageNum);
+   var size = parseInt(req.query.size);
+   var query={};
+   if (pageNum <0 || pageNum ===0){
+       response ={
+           error: true,
+           message: "Invalid number of page, start with 1 or more than 1"
+       };
+       return res.json(response);
+   }
+   query.skip = size *(pageNum - 1);
+   query.limit = size;
+   const user = Note.find({},{},query);
 
+   user.find({ deleted: { $ne: true } }).sort({ date: "desc" })
+   .then(note => {
+     res.json(note);
+   })
+   .catch(err => {
+     res.status(500).json({
+       message: "Error Occured.",
+       errMsg : err.toString()
+     });
+   });
+};
 exports.findOne = (req, res) => {
     Note.findById(req.params.id)
     .then(note => {
